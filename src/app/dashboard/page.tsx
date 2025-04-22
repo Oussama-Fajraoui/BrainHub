@@ -1,10 +1,11 @@
+'use client'
 import React from 'react'
+import {useUser} from "@clerk/nextjs";
 
 const DashboardPage = () => {
+    const {user} = useUser()
   return (
-    <div>
-        DashboardPage
-    </div>
+    <div>{user?.firstName}</div>
   )
 }
 

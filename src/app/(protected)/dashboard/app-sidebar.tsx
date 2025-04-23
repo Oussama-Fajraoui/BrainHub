@@ -7,7 +7,7 @@ import {
     SidebarGroup,
     SidebarGroupLabel,
     SidebarGroupContent,
-    SidebarMenuItem, SidebarMenuButton
+    SidebarMenuItem, SidebarMenuButton, SidebarMenu
 } from "@/components/ui/sidebar";
 import { LayoutDashboard, Bot, Presentation, CreditCard } from "lucide-react";
 import Link from "next/link";
@@ -37,6 +37,18 @@ const items = [
     },
 ]
 
+const Projects = [
+    {
+        name: "Project 1"
+    },
+    {
+        name: "Project 2"
+    },
+    {
+        name: "Project 3 "
+    },
+]
+
 export function AppSidebar () {
     const pathname = usePathname()
 
@@ -51,20 +63,50 @@ export function AppSidebar () {
                         Application
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
-                        {items.map(item => {
-                            return (
-                                <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton asChild>
-                                        <Link href={item.url} className={cn({
-                                            '!bg-primary !text-white': pathname === item.url
-                                        })}>
-                                            <item.icon />
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            )
-                        })}
+                        <SidebarMenu>
+                            {items.map(item => {
+                                return (
+                                    <SidebarMenuItem key={item.title}>
+                                        <SidebarMenuButton asChild>
+                                            <Link href={item.url} className={cn({
+                                                '!bg-primary !text-white': pathname === item.url
+                                            })}>
+                                                <item.icon />
+                                                <span>{item.title}</span>
+                                            </Link>
+                                        </SidebarMenuButton>
+                                    </SidebarMenuItem>
+                                )
+                            })}
+                        </SidebarMenu>
+                    </SidebarGroupContent>
+                </SidebarGroup>
+                <SidebarGroup>
+                    <SidebarGroupLabel>
+                        Your Projects
+                    </SidebarGroupLabel>
+                    <SidebarGroupContent>
+                        <SidebarMenu>
+                            {Projects.map(project => {
+                                return(
+                                    <SidebarMenuItem key={project.name}>
+                                        <SidebarMenuButton asChild>
+                                            <div>
+                                                <div className={cn(
+                                                    'rounded-sm border size-6 flex items-center justify-center text-sm bg-white text-primary',
+                                                {
+                                                    'bg-primary text-white' : true
+                                                }
+                                                )}>
+                                                    {project.name[0]}
+                                                </div>
+                                                <span>{project.name}</span>
+                                            </div>
+                                        </SidebarMenuButton>
+                                    </SidebarMenuItem>
+                                )
+                            })}
+                        </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>

@@ -9,10 +9,11 @@ import {
     SidebarGroupContent,
     SidebarMenuItem, SidebarMenuButton, SidebarMenu
 } from "@/components/ui/sidebar";
-import { LayoutDashboard, Bot, Presentation, CreditCard } from "lucide-react";
+import {LayoutDashboard, Bot, Presentation, CreditCard, Plus} from "lucide-react";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {cn} from "@/lib/utils";
+import {Button} from "@/components/ui/button";
 
 const items = [
     {
@@ -106,6 +107,15 @@ export function AppSidebar () {
                                     </SidebarMenuItem>
                                 )
                             })}
+                            <div className="h-2"></div>
+                            <SidebarMenuItem>
+                                <Link href="/create">
+                                    <Button size='sm' variant="outline" className="w-fit">
+                                        <Plus />
+                                        Create Project
+                                    </Button>
+                                </Link>
+                            </SidebarMenuItem>
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>

@@ -1,11 +1,11 @@
-import React from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 
-const COMPONENT_NAME = () => {
-  return (
-    <div>
-
-    </div>
-  )
+const useRefetch = () => {
+    // refetches all active trpc queries
+    const queryClient = useQueryClient()
+    return async () => {
+        await queryClient.refetchQueries({ type: 'active' })
+    }
 }
 
-export default COMPONENT_NAME
+export default useRefetch
